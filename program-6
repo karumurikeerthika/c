@@ -1,0 +1,14 @@
+#include <stdio.h>
+ int main() {
+    int a, b, c, d, i, j;
+    float result;
+    printf("Enter values for a, b, c, d: ");
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+    result = a / b * c - b + a * d / 3.0;
+    printf("Result of expression (a/b*c - b + a*d/3) = %.2f\n", result);
+    printf("Enter value for i: ");
+    scanf("%d", &i);
+    j = i++ + ++i + i++ + ++i;
+    printf("Value of j = %d\n", j);
+    return 0;
+ }
