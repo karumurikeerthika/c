@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>  // For using qsort
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int N;
+        scanf("%d", &N);
+
+        int arrivals[N];
+        int departures[N];
+
+        // Read arrival times
+        for (int i = 0; i < N; i++) {
+            scanf("%d", &arrivals[i]);
+        }
+
+        // Read departure times
+        for (int i = 0; i < N; i++) {
+            scanf("%d", &departures[i]);
+        }
+
+        int max_guests = 0;
+        // Iterate through all possible time points (from 1 to 1000 as per constraints)
+        for (int time = 1; time <= 1000; time++) {
+            int current_guests = 0;
+            // Count guests present at the current time
+            for (int i = 0; i < N; i++) {
+                if (arrivals[i] <= time && departures[i] > time) {
+                    current_guests++;
+                }
+            }
+            // Update max_guests if needed
+            if (current_guests > max_guests) {
+                max_guests = current_guests;
+            }
+        }
+
+        printf("%d\n", max_guests);
+    }
+
+    return 0;
+}
