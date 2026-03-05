@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int compare_ascending(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int compare_descending(const void *a, const void *b) {
+    return (*(int*)b - *(int*)a);
+}
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int N, K;
+        scanf("%d %d", &N, &K);
+
+        int *A = (int*)malloc(N * sizeof(int));
+        if (A == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            return 1; // Exit if memory allocation fails
+        }
+
+        for (int i = 0; i < N; i++) {
+            scanf("%d", &A[i]);
+        }
+
+        int motu_size = (N + 1) / 2;
+        int tomu_size = N / 2;
+
+        int *motu = (int*)malloc(motu_size * sizeof(int));
+        int *tomu = (int*)malloc(tomu_size * sizeof(int));
+
+        if (motu == NULL || tomu == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            free(A); // Free previously allocated memory
+            if(motu != NULL) free(motu);
+            if(tomu != NULL) free(tomu);
+            return 1;
+        }
+
+        int motu_index = 0;
+        int tomu_index = 0;
+
+        for (int i = 0; i < N; i++) {
+            if (i % 2 == 0) {
+                motu[motu_index++] = A[i];
+            } else {
+                tomu[tomu_index++] = A[i];
+            }
+        }
+
+        // Sort tomu in ascending order using qsort
+        qsort(tomu, tomu_size, sizeof(int), compare_ascending);
+
+        // Sort motu in descending order using qsort
+        qsort(motu, motu_size, sizeof(int), compare_descending);
+
+        // Swap elements
+        int swap_count = 0;
+        for (int i = 0; i < motu_size && i < tomu_size && swap_count < K; i++) {
+            if (tomu[i] > motu[i]) {
+                int temp = tomu[i];
+                tomu[i] = motu[i];
+                motu[i] = temp;
+                swap_count++;
+            }
+        }
+
+        // Calculate scores
+        int motu_score = 0;
+        for (int i = 0; i < motu_size; i++) {
+            motu_score += motu[i];
+        }
+
+        int tomu_score = 0;
+        for (int i = 0; i < tomu_size; i++) {
+            tomu_score += tomu[i];
+        }
+
+        if (tomu_score > motu_score) {
+            printf("YES\n");
+        } else {
+            printf("NO\n");
+        }
+
+        free(A);
+        free(motu);
+        free(tomu);
+    }
+
+    return 0;
+}
