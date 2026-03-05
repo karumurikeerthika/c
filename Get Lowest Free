@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d",&T);
+
+    while(T--){
+        int A,B,C;
+        scanf("%d %d %d",&A,&B,&C);
+
+        int min = A;
+        if(B < min) min = B;
+        if(C < min) min = C;
+
+        int total = A + B + C - min;
+
+        printf("%d\n", total);
+    }
+
+    return 0;
+}
