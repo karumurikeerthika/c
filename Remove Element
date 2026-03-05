@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d",&T);
+
+    while(T--) {
+        int N;
+        long long K;
+        scanf("%d %lld",&N,&K);
+
+        long long a, mn = 1e18, mx = 0;
+
+        for(int i=0;i<N;i++) {
+            scanf("%lld",&a);
+            if(a < mn) mn = a;
+            if(a > mx) mx = a;
+        }
+
+        if(mn + mx <= K)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+
+    return 0;
+}
