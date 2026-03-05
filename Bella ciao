@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while(T--) {
+        long long D, d, P, Q;
+        scanf("%lld %lld %lld %lld", &D, &d, &P, &Q);
+
+        long long groups = D / d;
+        long long rem = D % d;
+
+        long long full = d * (groups * (2*P + (groups-1)*Q) / 2);
+        long long last = rem * (P + groups*Q);
+
+        printf("%lld\n", full + last);
+    }
+
+    return 0;
+}
