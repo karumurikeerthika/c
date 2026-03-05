@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while(T--) {
+        int N;
+        scanf("%d", &N);
+
+        long long sum = 0;
+        long long max_even = -1;
+        long long min_odd = LLONG_MAX;
+
+        for(int i = 1; i <= N; i++) {
+            long long x;
+            scanf("%lld", &x);
+            x = llabs(x);
+
+            if(i % 2 == 1) {
+                sum += x;
+                if(x < min_odd) min_odd = x;
+            } else {
+                sum -= x;
+                if(x > max_even) max_even = x;
+            }
+        }
+
+        long long gain = 2 * (max_even - min_odd);
+        if(gain < 0) gain = 0;
+
+        printf("%lld\n", sum + gain);
+    }
+
+    return 0;
+}
