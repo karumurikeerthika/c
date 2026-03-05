@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int min3(int a, int b, int c) {
+    int m = a;
+    if(b < m) m = b;
+    if(c < m) m = c;
+    return m;
+}
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while(T--) {
+        int A1,A2,A3,B1,B2,B3;
+        scanf("%d %d %d %d %d %d",&A1,&A2,&A3,&B1,&B2,&B3);
+
+        int alice = (A1+A2+A3) - min3(A1,A2,A3);
+        int bob = (B1+B2+B3) - min3(B1,B2,B3);
+
+        if(alice > bob)
+            printf("Alice\n");
+        else if(bob > alice)
+            printf("Bob\n");
+        else
+            printf("Tie\n");
+    }
+
+    return 0;
+}
