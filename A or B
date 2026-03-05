@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while(T--) {
+        int X, Y;
+        scanf("%d %d", &X, &Y);
+
+        int score1 = (500 - 2*X) + (1000 - 4*(X + Y));
+        int score2 = (1000 - 4*Y) + (500 - 2*(X + Y));
+
+        if(score1 > score2)
+            printf("%d\n", score1);
+        else
+            printf("%d\n", score2);
+    }
+
+    return 0;
+}
