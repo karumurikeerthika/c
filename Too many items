@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while(T--) {
+        int N;
+        scanf("%d", &N);
+
+        int bags = (N + 9) / 10;
+        printf("%d\n", bags);
+    }
+
+    return 0;
+}
